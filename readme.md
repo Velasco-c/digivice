@@ -119,7 +119,7 @@ src/
 ### Pasos
 
 ```bash
-git clone https://github.com/Velasco-c/Taller-2_JavaScript.git
+git clone https://github.com/Velasco-c/digivice
 cd Taller-2_JavaScript
 npm install
 npm run dev
