@@ -120,7 +120,7 @@ src/
 
 ```bash
 git clone https://github.com/Velasco-c/digivice
-cd Taller-2_JavaScript
+cd digivice
 npm install
 npm run dev
 ```
