@@ -4,7 +4,7 @@ Aplicación web interactiva que simula un **Digivice retro con estética GameBoy
 
 El proyecto fue reconstruido desde cero con **React 19, TypeScript, Vite y Framer Motion**, siguiendo una arquitectura modular por capas y un diseño totalmente responsive.
 
-**Demo:** https://velasco-c.github.io/Taller-2_JavaScript/
+**Demo:** https://velasco-c.github.io/digivice/
 
 **Datos en vivo:** [Digi API](https://digi-api.com/)
 
