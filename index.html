@@ -1,85 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
-    <title>Digivice estilo GameBoy</title>
-</head>
-
-<body>
-
-    <header class="head">
-        <div></div>
-        <div class="contenedor-buscador">
-            <div class="buscador">
-                <input type="text" placeholder="buscar por id....." id="input-buscador">
-                <button id="buscador"> <img src="/imagenes/iconos/search.svg" alt=""></button>
-            </div>
-        </div>
-        <div class="iconos">
-        </div>
-    </header>
-
-    <!-- gameboy -->
-    <div class="gameboy-container">
-        <!-- Gatillos superiores L y R -->
-        <div class="l-r-buttons">
-            <div class="l-button"></div>
-            <div class="r-button"></div>
-        </div>
-
-        <div class="gameboy">
-            <!-- Área de la pantalla -->
-            <div class="screen-area">
-                <div class="logo-nintendo">Nintendo</div>
-                <div class="screen" id="pantalla">
-                    <!-- Aquí iría el contenido del juego -->
-                </div>
-                <div class="screen-info">
-                    <span class="power-led">POWER ●</span>
-                    <span>GAME BOY</span>
-                </div>
-            </div>
-
-            <!-- Área de controles -->
-            <div class="buttons-area">
-                <!-- D-Pad -->
-                <div class="dpad">
-                    <div class="dpad-cross up"></div>
-                    <div class="dpad-cross down"></div>
-                    <div class="dpad-cross left"></div>
-                    <div class="dpad-cross right"></div>
-                    <div class="dpad-center"></div>
-                </div>
-
-                <!-- Botones A y B -->
-                <div class="ab-buttons">
-                    <button class="b-button">B</button>
-                    <button class="a-button">A</button>
-                </div>
-            </div>
-
-            <!-- Botones Start y Select -->
-            <div class="start-select-area">
-                <div class="start-select-btn">
-                    <div class="pill-button"></div>
-                    <div class="label">Select</div>
-                </div>
-                <div class="start-select-btn">
-                    <div class="pill-button"></div>
-                    <div class="label">Start</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="contenedor-principal" class="modal-container">
-      <button id="eventofinalizar">x</button>
-    </div>
-    <script src="/javascript/mian.js"></script>
-
-</body>
-
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#050b04" />
+    <meta
+      name="description"
+      content="DIGIVICE OS: un Digivice retro inspirado en GameBoy, reconstruido con React, TypeScript, Vite y animaciones fluidas. Explora la base de datos Digimon en vivo."
+    />
+    <meta property="og:title" content="DIGIVICE OS · Digital Monster System" />
+    <meta
+      property="og:description"
+      content="Explora 1488+ Digimon en un dispositivo retro con búsqueda, escaneo y evolución. React + TypeScript + Vite."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>DIGIVICE OS · Digital Monster System</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

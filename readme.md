@@ -1,134 +1,221 @@
-# 🎮 Digivice Estilo GameBoy
+# DIGIVICE OS · Digivice estilo GameBoy
 
-**Proyecto realizado por:** Carlos  Elias Tzoy Velasco
-**Descripción:** Aplicación interactiva que simula un dispositivo Digivice con diseño retro tipo GameBoy, donde puedes explorar una colección de digimons (5), navegar entre ellos usando botones de carrusel y buscar digimons específicos por ID.
+Aplicación web interactiva que simula un **Digivice retro con estética GameBoy**. Explora el catálogo completo de Digimon, busca por nombre o ID, abre fichas de escaneo y navega por evoluciones, todo dentro de una pantalla LCD animada.
 
----
+El proyecto fue reconstruido desde cero con **React 19, TypeScript, Vite y Framer Motion**, siguiendo una arquitectura modular por capas y un diseño totalmente responsive.
 
-## 📱 ¿Qué hace la aplicación?
+**Demo:** https://velasco-c.github.io/Taller-2_JavaScript/
 
-Esta aplicación es un simulador interactivo de un Digivice (dispositivo ficticio de Digimon) con interfaz estilo GameBoy clásico. Sus funcionalidades incluyen:
-
-- **Carrusel de digimons**: Visualiza una lista de digimons que puedes navegar usando los botones A y B del dispositivo simulado
-- **Búsqueda por ID o NOMBRES**: Busca un digimon específico ingresando su ID/Nombres en el buscador
-- **Modal de detalles**: Visualiza información completa del digimon (imagen, descripción, tipo, nivel)
-- **Diseño retro**: Interfaz completa que imita la estética de una GameBoy original
+**Datos en vivo:** [Digi API](https://digi-api.com/)
 
 ---
 
-## 🔌 API Utilizada
+## 📸 Vista previa
 
-**Digi API** - API gratuita que proporciona información completa sobre digimons
+### Catálogo en escritorio
 
-- **Documentación oficial:** https://digi-api.com/api/v1/digimon
-- **Endpoints principales:**
-  - `GET /api/v1/digimon` - Obtiene la lista de todos los digimons
-  - `GET /api/v1/digimon/{id}` - Obtiene los detalles de un digimon específico
+![Catálogo de Digimon en escritorio](docs/capturas/catalogo-desktop.png)
 
----
+### Búsqueda y detalle en móvil
 
-## 🖥️ Instrucciones para ejecutarla localmente
-
-### Requisitos:
-- Un navegador web moderno (Chrome, Firefox, Edge, Safari)
-- Conexión a internet (para consumir la API)
-
-### Pasos:
-
-1. **Clona o descarga el proyecto**
-   ```bash
-   git clone https://github.com/Velasco-c/Taller-2_JavaScript.git
-   cd Taller-2_JavaScript
-   ```
-
-2. **Abre el archivo index.html**
-   - **Opción 1:** Haz doble clic en `index.html`
-   - **Opción 2:** Click derecho → "Abrir con" → Selecciona tu navegador
-   - **Opción 3:** En VS Code, usa la extensión "Live Server" (clic derecho en `index.html` → "Open with Live Server")
-
-3. **¡Disfruta!**
-   - Usa los botones A y B para navegar por el carrusel de digimons
-   - Ingresa un ID en el buscador y presiona Enter o haz clic en el botón de búsqueda
-   - Haz clic en la X para cerrar el modal de detalles
+<p align="center">
+  <img src="docs/capturas/busqueda-movil.png" alt="Búsqueda de Digimon en móvil" width="45%" />
+  <img src="docs/capturas/detalle-movil.png" alt="Ficha de Digimon en móvil" width="45%" />
+</p>
 
 ---
 
-## 📁 Estructura del proyecto
+## ✨ Características
 
+- **Catálogo paginado:** carga los Digimon de la Digi API de 24 en 24 con scroll infinito y navegación animada.
+- **Búsqueda instantánea:** filtra por nombre o por ID numérico, con debounce y estados de carga, vacío y error.
+- **Ficha de escaneo:** imagen, nivel, atributo, tipo, campos, habilidades, descripción y evoluciones.
+- **Navegación por evoluciones:** abre directamente la ficha de un Digimon evolucionado y vuelve al detalle anterior.
+- **Controles de dispositivo:** D-pad, botones A/B, Start/Select y gatillos L/R, además de atajos de teclado.
+- **Efectos CRT y sonido:** activa o desactiva el efecto de pantalla y los sonidos de la interfaz.
+- **Animaciones cuidadas:** arranque tipo BIOS, transiciones entre pantallas, glitch, scanlines, lluvia de caracteres y microinteracciones.
+- **Responsive:** layout adaptado a escritorio, tablet y móvil sin desbordamiento horizontal.
+- **Accesibilidad:** navegación por teclado, etiquetas ARIA, foco visible y respeto por `prefers-reduced-motion`.
+
+---
+
+## 🎮 Controles
+
+| Acción | Teclado | Dispositivo |
+| --- | --- | --- |
+| Navegar por el catálogo | Flechas izquierda / derecha | D-pad · botones L / R |
+| Ver detalle del Digimon | Flecha arriba | Botón A |
+| Abrir el buscador | Flecha abajo | Start |
+| Confirmar / seleccionar | Enter | Botón A |
+| Volver / cerrar | Escape | Botón B |
+| Activar o silenciar sonido | `S` | Select |
+| Activar o desactivar CRT | `M` | — |
+
+También puedes usar los botones en pantalla. En móvil, el dock inferior permite abrir el buscador, ver la ficha, cambiar el sonido y el efecto CRT.
+
+---
+
+## 🛠️ Tecnologías
+
+- **React 19** + **TypeScript 5.9**
+- **Vite 8** como bundler y servidor de desarrollo
+- **Framer Motion 14** para animaciones y transiciones
+- **CSS Modules globales por capas** con variables de diseño y `clamp()`
+- **Digi API v1** como fuente de datos
+- **GitHub Actions + GitHub Pages** para despliegue automático
+
+---
+
+## 🧱 Arquitectura
+
+El código está organizado por capas, con dependencias que apuntan hacia el dominio:
+
+```text
+src/
+├── app/                         # Composition root y composición de la página
+│   ├── App.tsx
+│   └── container.ts
+├── core/
+│   ├── domain/                  # Entidades, errores y contratos
+│   │   ├── entities/
+│   │   ├── errors/
+│   │   └── repositories/
+│   └── application/             # Casos de uso
+│       └── use-cases/
+├── infrastructure/              # Implementaciones concretas
+│   ├── api/                     # Cliente HTTP, DTOs, mappers y repositorio
+│   ├── config/                  # Configuración de la API
+│   └── repositories/            # Repositorio con caché en memoria
+├── presentation/                # UI, estilos y hooks
+│   ├── components/
+│   │   ├── background/
+│   │   ├── digivice/
+│   │   ├── layout/
+│   │   ├── screen/
+│   │   └── ui/
+│   ├── hooks/
+│   └── styles/
+└── shared/                      # Constantes y utilidades reutilizables
 ```
-Taller-2_JavaScript/
-├── index.html          # Estructura HTML principal
-├── css/
-│   └── style.css       # Estilos CSS (diseño GameBoy y responsive)
-├── javascript/
-│   └── mian.js         # Lógica JavaScript (API calls, eventos)
-├── imagenes/
-│   ├── fondo.svg       # Fondo decorativo del body
-│   └── iconos/
-│       └── search.svg  # Icono del buscador
-└── readme.md           # Este archivo
+
+### Capas
+
+- **Domain:** define `Digimon`, errores de dominio y el contrato `DigimonRepository`.
+- **Application:** casos de uso `getCatalogPage`, `getDetail` y `searchDigimons`.
+- **Infrastructure:** implementa el contrato con `DigimonApiRepository`, mapea los DTOs de la API y añade caché con `CachedDigimonRepository`.
+- **Presentation:** componentes, hooks de estado, máquina de pantallas (`boot → catalog → search → detail`) y estilos.
+- **App:** única capa que conoce las implementaciones concretas y las inyecta en la UI.
+
+---
+
+## 🚀 Ejecución local
+
+### Requisitos
+
+- **Node.js 20.19+** o **22.12+**
+- **npm 10+**
+- Conexión a internet para consultar la Digi API
+
+### Pasos
+
+```bash
+git clone https://github.com/Velasco-c/Taller-2_JavaScript.git
+cd Taller-2_JavaScript
+npm install
+npm run dev
 ```
 
----
+La aplicación quedará disponible en `http://localhost:5173/`.
 
-## 🎯 Funcionalidades principales
+### Scripts disponibles
 
-### 1. **Carrusel de Digimons**
-- Carga automáticamente todos los digimons desde la API
-- Navega con botones A (adelante) y B (atrás)
-- Scroll suave y snapping automático
+| Script | Descripción |
+| --- | --- |
+| `npm run dev` | Inicia el servidor de desarrollo con HMR. |
+| `npm run build` | Verifica TypeScript y genera la build de producción en `dist/`. |
+| `npm run preview` | Sirve localmente la build de producción. |
+| `npm run typecheck` | Ejecuta `tsc --noEmit` sin generar archivos. |
+| `npm run deploy` | Genera la build y la publica en la rama `gh-pages` con `gh-pages`. |
 
-### 2. **Búsqueda por ID**
-- Ingresa el ID del digimon que deseas buscar
-- Presiona Enter o haz clic en el botón de búsqueda
-- Se abre un modal con información detallada:
-  - Imagen del digimon
-  - Nombre
-  - Descripción
-  - Tipo
-  - Nivel
+### Variables de entorno
 
-### 3. **Diseño Retro GameBoy**
-- Pantalla verde clásica (#9bac9b)
-- Botones interactivos (D-pad, A, B, Start, Select)
-- Gatillos L y R en la parte superior
-- Efectos visuales y sombras retro
+La URL de la API se puede sobreescribir con:
+
+```bash
+VITE_DIGI_API_URL=https://digi-api.com/api/v1
+```
+
+Si no se define, se usa `https://digi-api.com/api/v1`.
 
 ---
 
-## 🛠️ Tecnologías utilizadas
+## 🔌 API utilizada
 
-- **HTML5** - Estructura semántica
-- **CSS3** - Diseño responsivo con Flexbox, Grid y variables CSS
-- **JavaScript (ES6+)** - Fetch API, async/await, DOM manipulation
-- **Digi API** - Fuente de datos de digimons
+**Digi API v1** · https://digi-api.com/api/v1/digimon
+
+| Uso | Endpoint |
+| --- | --- |
+| Catálogo paginado | `GET /digimon?page=0&pageSize=24` |
+| Detalle por ID o nombre | `GET /digimon/{idOrName}` |
+| Búsqueda por nombre | `GET /digimon?name=agumon` |
+| Búsqueda por ID | `GET /digimon/{id}` |
+
+La capa de infraestructura normaliza las respuestas, maneja errores HTTP y cachea en memoria las consultas repetidas para evitar peticiones innecesarias.
 
 ---
 
-## 📸 Imágenes de Prueba
+## 🌐 Despliegue en GitHub Pages
 
-### Captura 1:
-![Prueba 1](imagenes/prueba1.png)
+El repositorio incluye el flujo de trabajo [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml):
 
-### Captura 2:
-![Prueba 2](imagenes/prueba2.png)
+1. En GitHub, abre **Settings → Pages**.
+2. En **Build and deployment → Source**, selecciona **GitHub Actions**.
+3. Haz push a la rama `main` o ejecuta el workflow manualmente desde **Actions → Deploy to GitHub Pages**.
+
+Vite está configurado con `base: './'`, por lo que los assets usan rutas relativas y la build funciona tanto en GitHub Pages como en cualquier subdirectorio o dominio propio.
+
+La aplicación se publicará en:
+
+```text
+https://velasco-c.github.io/Taller-2_JavaScript/
+```
+
+### Alternativa manual
+
+```bash
+npm run deploy
+```
+
+Este comando genera `dist/` y publica su contenido en la rama `gh-pages`.
+
+---
+
+## ♿ Accesibilidad y rendimiento
+
+- Controles completos por teclado y botones con etiquetas `aria-label`.
+- `aria-live` para anunciar cambios de pantalla y resultados de búsqueda.
+- Enlace para saltar al contenido principal.
+- Respeto por `prefers-reduced-motion` y por el modo de movimiento reducido configurado en el sistema.
+- Imágenes con `loading="lazy"` y `decoding="async"` en el catálogo.
+- Caché en memoria para búsquedas y detalles repetidos.
+- Build de producción con Vite, TypeScript estricto y sin errores de tipo.
+
+---
+
+## 📁 Capturas adicionales
+
+Las capturas de versiones anteriores se conservan en [`docs/capturas/`](docs/capturas/).
 
 ---
 
 ## 🎓 Créditos
 
-Desarrollado como parte del **Taller #2 de JavaScript** bajo la mentoría de Campuslands
+Proyecto desarrollado por **Carlos Elías Tzoy Velasco** como parte del **Taller #2 de JavaScript** bajo la mentoría de **Campuslands**.
 
-**API:** [Digi API](https://digi-api.com/)
-
----
-
-## 📞 Contacto
-
-Si tienes preguntas o sugerencias sobre este proyecto, puedes contactarme a través de:
-- GitHub: [(https://github.com/Velasco-c)]
-- Email: [carlos.velasco.est@gmail.com]
+- **API:** [Digi API](https://digi-api.com/)
+- **Repositorio:** [Velasco-c/Taller-2_JavaScript](https://github.com/Velasco-c/Taller-2_JavaScript)
+- **Contacto:** carlos.velasco.est@gmail.com
 
 ---
 
-**Última actualización:** Mayo 2026
+**Última actualización:** Noviembre 2026

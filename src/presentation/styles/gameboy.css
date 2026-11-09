@@ -1,0 +1,646 @@
+.gameboy-float {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  animation: idle-float 7s ease-in-out infinite;
+}
+
+.gameboy {
+  position: relative;
+  width: min(100%, 460px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  filter: drop-shadow(0 38px 48px rgba(0, 0, 0, 0.55));
+  transform-style: preserve-3d;
+}
+
+/* Triggers ---------------------------------------------------------- */
+
+.gameboy__triggers {
+  position: relative;
+  z-index: 0;
+  display: flex;
+  justify-content: space-between;
+  width: 86%;
+  margin-bottom: -5px;
+}
+
+.trigger {
+  width: 30%;
+  height: 23px;
+  border: 1px solid rgba(20, 8, 38, 0.9);
+  border-bottom: 0;
+  border-radius: 13px 13px 0 0;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.22), transparent 40%),
+    linear-gradient(180deg, #8056c2, #5a3494 55%, #452576);
+  box-shadow:
+    inset 0 4px 7px rgba(255, 255, 255, 0.15),
+    0 -2px 0 rgba(38, 16, 64, 0.9);
+  color: rgba(255, 255, 255, 0.45);
+  font-family: var(--font-pixel);
+  font-size: 7px;
+  letter-spacing: 1px;
+  transition: transform 0.08s ease, filter 0.12s ease;
+}
+
+.trigger:hover {
+  filter: brightness(1.12);
+}
+
+.trigger:active {
+  transform: translateY(4px);
+}
+
+.trigger--l {
+  border-radius: 16px 10px 0 0;
+}
+
+.trigger--r {
+  border-radius: 10px 16px 0 0;
+}
+
+/* Body -------------------------------------------------------------- */
+
+.gameboy__body {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 13px;
+  padding: 16px 16px 19px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 18px 18px 58px 58px;
+  background:
+    radial-gradient(circle at 18% -4%, rgba(255, 255, 255, 0.22), transparent 34%),
+    radial-gradient(circle at 84% 8%, rgba(255, 255, 255, 0.09), transparent 38%),
+    linear-gradient(158deg, #8458c4 0%, #633ca4 28%, #4b2979 66%, #361b58 100%);
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -14px 26px rgba(22, 8, 44, 0.55),
+    inset -8px 0 22px rgba(22, 8, 44, 0.28),
+    0 18px 0 #271040,
+    0 30px 46px rgba(0, 0, 0, 0.52);
+}
+
+.gameboy__body::before {
+  content: '';
+  position: absolute;
+  top: 7px;
+  left: 12%;
+  width: 76%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  pointer-events: none;
+}
+
+.screw {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 28%, #d6c5ee, #8d6bb8 48%, #4e2d7e 82%);
+  box-shadow:
+    inset 0 0 0 1px rgba(18, 6, 34, 0.45),
+    0 1px 1px rgba(255, 255, 255, 0.18);
+}
+
+.screw::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 2px;
+  right: 2px;
+  height: 1px;
+  background: rgba(26, 10, 48, 0.75);
+  transform: translateY(-50%) rotate(34deg);
+}
+
+.screw--tl {
+  top: 12px;
+  left: 12px;
+}
+
+.screw--tr {
+  top: 12px;
+  right: 12px;
+}
+
+.screw--bl {
+  bottom: 17px;
+  left: 18px;
+}
+
+.screw--br {
+  bottom: 17px;
+  right: 18px;
+}
+
+/* Brand row --------------------------------------------------------- */
+
+.gameboy__brandrow {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 7px;
+}
+
+.gameboy__brand {
+  color: rgba(255, 255, 255, 0.58);
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 1.8px;
+}
+
+.gameboy__brand strong {
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 400;
+}
+
+.gameboy__model {
+  color: rgba(255, 255, 255, 0.42);
+  font-family: var(--font-pixel);
+  font-size: 6px;
+  letter-spacing: 1px;
+}
+
+/* Bezel ------------------------------------------------------------- */
+
+.gameboy__bezel {
+  width: 100%;
+  padding: 11px 13px 9px;
+  border: 1px solid #0b0910;
+  border-radius: 14px 14px 34px 14px;
+  background: linear-gradient(180deg, #343139 0%, #232128 34%, #141217 100%);
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -4px 12px rgba(0, 0, 0, 0.75),
+    inset 3px 0 10px rgba(0, 0, 0, 0.35),
+    0 2px 0 rgba(255, 255, 255, 0.09);
+}
+
+.gameboy__bezel-caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 7px;
+  padding: 0 2px;
+  color: rgba(255, 255, 255, 0.25);
+  font-family: var(--font-mono);
+  font-size: 6px;
+  letter-spacing: 1.25px;
+}
+
+.gameboy__bezel-tag {
+  padding: 1px 4px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 5.5px;
+}
+
+.gameboy__screen {
+  position: relative;
+  padding: 5px;
+  border-radius: 6px;
+  background: #070a07;
+  box-shadow:
+    inset 0 0 0 2px #000,
+    inset 0 0 20px rgba(0, 0, 0, 0.95),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.gameboy__bezel-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 7px;
+  margin-top: 7px;
+  padding: 0 2px;
+  color: rgba(255, 255, 255, 0.32);
+  font-family: var(--font-mono);
+  font-size: 6px;
+  letter-spacing: 1px;
+}
+
+.power-led {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #ff7171;
+  white-space: nowrap;
+}
+
+.power-led i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #ff3b4f;
+  box-shadow: 0 0 8px #ff3b4f;
+  animation: power-pulse 2.6s ease-in-out infinite;
+}
+
+.gameboy__bezel-name {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.gameboy__bezel-tech {
+  white-space: nowrap;
+}
+
+/* Controls ---------------------------------------------------------- */
+
+.gameboy__controls {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 18px 0;
+}
+
+.gameboy__controls-side {
+  display: flex;
+  align-items: center;
+}
+
+.dpad {
+  position: relative;
+  width: 86px;
+  height: 86px;
+}
+
+.dpad__cross {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.16), transparent 38%),
+    linear-gradient(145deg, #3d3945, #1a181e 55%, #121015);
+  clip-path: polygon(
+    33% 0,
+    67% 0,
+    67% 33%,
+    100% 33%,
+    100% 67%,
+    67% 67%,
+    67% 100%,
+    33% 100%,
+    33% 67%,
+    0 67%,
+    0 33%,
+    33% 33%
+  );
+  filter: drop-shadow(0 5px 4px rgba(0, 0, 0, 0.55));
+}
+
+.dpad__cross::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  clip-path: inherit;
+  background: linear-gradient(145deg, transparent, rgba(0, 0, 0, 0.35));
+}
+
+.dpad__btn {
+  position: absolute;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.2);
+  transition: color 0.1s ease, filter 0.1s ease;
+}
+
+.dpad__btn:hover {
+  color: rgba(198, 255, 74, 0.8);
+}
+
+.dpad__btn:active {
+  color: var(--acid);
+  filter: drop-shadow(0 0 6px var(--acid));
+}
+
+.dpad__btn--up {
+  top: 3px;
+  left: 50%;
+  width: 30px;
+  height: 28px;
+  transform: translateX(-50%);
+}
+
+.dpad__btn--down {
+  bottom: 3px;
+  left: 50%;
+  width: 30px;
+  height: 28px;
+  transform: translateX(-50%);
+}
+
+.dpad__btn--left {
+  top: 50%;
+  left: 3px;
+  width: 28px;
+  height: 30px;
+  transform: translateY(-50%);
+}
+
+.dpad__btn--right {
+  top: 50%;
+  right: 3px;
+  width: 28px;
+  height: 30px;
+  transform: translateY(-50%);
+}
+
+.dpad__center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  width: 27px;
+  height: 27px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 32%, #3b3742, #18161b 70%);
+  transform: translate(-50%, -50%);
+}
+
+.dpad__center:active {
+  background: radial-gradient(circle at 38% 32%, #4b4654, #211e25 70%);
+}
+
+.dpad__center-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #0a090c;
+  box-shadow: inset 0 1px 2px #000;
+}
+
+/* A/B --------------------------------------------------------------- */
+
+.ab-buttons {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+  padding-bottom: 5px;
+  transform: rotate(-16deg);
+}
+
+.ab-buttons__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.round-button {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(30, 8, 24, 0.8);
+  border-radius: 50%;
+  color: #ffe1ec;
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+  transition: transform 0.07s ease, box-shadow 0.07s ease, filter 0.15s ease;
+}
+
+.round-button--a {
+  background:
+    radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.35), transparent 38%),
+    radial-gradient(circle at 38% 34%, #ff6f9f, #b3185a 52%, #5d0629 100%);
+  box-shadow:
+    0 4px 0 #2b0a1a,
+    inset 0 2px 3px rgba(255, 255, 255, 0.35);
+}
+
+.round-button--b {
+  background:
+    radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.35), transparent 38%),
+    radial-gradient(circle at 38% 34%, #c46bff, #7a2bb8 52%, #3a0a60 100%);
+  box-shadow:
+    0 4px 0 #22083a,
+    inset 0 2px 3px rgba(255, 255, 255, 0.35);
+}
+
+.round-button:hover {
+  filter: brightness(1.08);
+}
+
+.round-button:active {
+  transform: translateY(3px);
+  box-shadow:
+    0 1px 0 #2b0a1a,
+    inset 0 2px 6px rgba(0, 0, 0, 0.42);
+}
+
+.ab-buttons__label {
+  color: rgba(255, 255, 255, 0.36);
+  font-family: var(--font-mono);
+  font-size: 6px;
+  letter-spacing: 1.2px;
+}
+
+/* Start / Select / speaker ------------------------------------------ */
+
+.gameboy__bottom {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px 27px 0 25px;
+}
+
+.start-select {
+  display: flex;
+  gap: 22px;
+  transform: rotate(-16deg);
+}
+
+.start-select__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.pill-button {
+  width: 36px;
+  height: 9px;
+  border: 1px solid rgba(0, 0, 0, 0.55);
+  border-radius: 999px;
+  background: linear-gradient(180deg, #4d4855, #211e26);
+  box-shadow:
+    0 2px 0 rgba(0, 0, 0, 0.55),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  transition: transform 0.07s ease, box-shadow 0.07s ease;
+}
+
+.pill-button:hover {
+  filter: brightness(1.15);
+}
+
+.pill-button:active {
+  transform: translateY(2px);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.start-select__label {
+  color: rgba(255, 255, 255, 0.36);
+  font-family: var(--font-mono);
+  font-size: 6px;
+  letter-spacing: 1.4px;
+}
+
+.speaker {
+  display: flex;
+  gap: 5px;
+  padding-right: 6px;
+  transform: rotate(-25deg);
+}
+
+.speaker__slot {
+  width: 7px;
+  height: 34px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #1c1922, #3a3543);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.14),
+    0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+.gameboy__footer-line {
+  color: rgba(255, 255, 255, 0.22);
+  font-family: var(--font-mono);
+  font-size: 5.5px;
+  letter-spacing: 1.3px;
+}
+
+/* Responsive -------------------------------------------------------- */
+
+@media (max-width: 640px) {
+  .gameboy {
+    width: min(100%, 400px);
+  }
+
+  .gameboy__body {
+    gap: 11px;
+    padding: 14px 13px 16px;
+  }
+
+  .gameboy__bezel {
+    padding: 9px 10px 8px;
+  }
+
+  .gameboy__controls {
+    padding: 8px 12px 0;
+  }
+
+  .dpad {
+    width: 74px;
+    height: 74px;
+  }
+
+  .ab-buttons {
+    gap: 16px;
+    padding-right: 4px;
+  }
+
+  .round-button {
+    width: 42px;
+    height: 42px;
+    font-size: 10px;
+  }
+
+  .gameboy__bottom {
+    padding: 3px 19px 0 18px;
+  }
+
+  .start-select {
+    gap: 17px;
+  }
+
+  .speaker__slot {
+    height: 29px;
+    width: 6px;
+  }
+
+  .gameboy__bezel-footer {
+    font-size: 5.5px;
+  }
+
+  .gameboy__bezel-tech {
+    display: none;
+  }
+}
+
+@media (max-width: 380px) {
+  .gameboy__body {
+    border-radius: 16px 16px 48px 48px;
+    padding: 12px 11px 14px;
+  }
+
+  .gameboy__brand {
+    font-size: 7px;
+    letter-spacing: 1.2px;
+  }
+
+  .dpad {
+    width: 66px;
+    height: 66px;
+  }
+
+  .dpad__btn--up,
+  .dpad__btn--down {
+    height: 23px;
+  }
+
+  .dpad__btn--left,
+  .dpad__btn--right {
+    width: 23px;
+  }
+
+  .ab-buttons {
+    gap: 12px;
+  }
+
+  .round-button {
+    width: 38px;
+    height: 38px;
+  }
+
+  .gameboy__bottom {
+    padding: 3px 14px 0;
+  }
+
+  .start-select {
+    gap: 13px;
+  }
+
+  .pill-button {
+    width: 31px;
+  }
+
+  .speaker {
+    gap: 4px;
+  }
+
+  .speaker__slot {
+    width: 5px;
+    height: 25px;
+  }
+
+  .gameboy__footer-line {
+    display: none;
+  }
+}
